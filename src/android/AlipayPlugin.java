@@ -1,4 +1,4 @@
-package com.sinofool.cordova.plugins.alipay;
+package com.yuhongtech.cordova.plugins.alipay;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -13,7 +13,7 @@ public class AlipayPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("callAlipaySDK")) {
+        if (action.equals("pay")) {
             final Activity activity = this.cordova.getActivity();
             final String payStr = args.getString(0);
             Runnable run = new Runnable() {

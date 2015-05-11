@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSString* appScheme;
 
-- (void) initAppScheme:(NSString*) scheme;
-- (void) callAlipaySDK:(NSString*) orderStr;
+- (void) pay:(NSString*) orderStr;
 
 @end
