@@ -9,8 +9,6 @@ import android.app.Activity;
 
 import com.alipay.sdk.app.PayTask;
 
-import java.lang.Exception;
-
 public class AlipayPlugin extends CordovaPlugin {
 
     @Override
@@ -22,12 +20,9 @@ public class AlipayPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     PayTask task = new PayTask(activity);
-                    try {
-                        String pay = task.pay(payStr);
-                        callbackContext.success();
-                    }catch(Exception ex){
-                        callbackContext.error(ex);
-                    }
+                        callbackContext.success(payStr);
+//                    String pay = task.pay(payStr);
+//                    callbackContext.success();
                 }
             };
             Thread th = new Thread(run);
