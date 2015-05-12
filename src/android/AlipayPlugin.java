@@ -20,7 +20,7 @@ public class AlipayPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     PayTask task = new PayTask(activity);
-                    boolean isExist = payTask.checkAccountIfExist();
+                    boolean isExist = task.checkAccountIfExist();
                     if(!isExist) return callbackContext.error("wallet not found");
 
                     String payRst = task.pay(payStr);
