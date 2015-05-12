@@ -20,18 +20,22 @@ public class AlipayPlugin extends CordovaPlugin {
                 @Override
                 public void run() {
                     PayTask task = new PayTask(activity);
-                    // System.out.println("PAYPAY: " + task.getVersion());
-                    String pay = task.pay(payStr);
-                    // System.out.println("PAYPAY: " + pay);
+                    try {
+                        String pay = task.pay(payStr);
+                        callbackContext.success();
+                    }catch(ex){
+                        callbackContext.error(ex);
+                    }
                 }
             };
             Thread th = new Thread(run);
-            th.setDaemon(true);
             th.start();
-            callbackContext.success();
             return true;
         }
+
         callbackContext.error("Unknown action " + action);
         return false;
     }
+
+
 }
