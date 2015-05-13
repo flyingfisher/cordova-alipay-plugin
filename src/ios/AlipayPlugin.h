@@ -10,8 +10,7 @@
 
 @interface AlipayPlugin : CDVPlugin
 
-@property (nonatomic, strong) NSString* appScheme;
-
-- (void) pay:(NSString*) orderStr;
+- (void) pay:(CDVInvokedUrlCommand*) command;
+- (void) isWalletExist:(CDVInvokedUrlCommand*) command;
 
 @end
