@@ -13,3 +13,17 @@ exports.pay = function(orderStr, appScheme, callback) {
             callback(err);
     }
 }
+
+exports.isWalletExist = function(callback) {
+    exec(success, error, "AlipayPlugin", "isWalletExist", []);
+
+    function success(rst){
+        if(callback)
+            callback(null, rst);
+    }
+
+    function error(err){
+        if(callback)
+            callback(err);
+    }
+}

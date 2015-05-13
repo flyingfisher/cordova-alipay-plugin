@@ -15,7 +15,7 @@ public class AlipayPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("pay")) {
+        if ("pay".equals(action)) {
             final Activity activity = this.cordova.getActivity();
             final String payStr = args.getString(0);
 
@@ -32,6 +32,12 @@ public class AlipayPlugin extends CordovaPlugin {
                     callbackContext.success(payRst);
                 }
             });
+            return true;
+        }
+
+        if ("isWalletExist".equals(action)){
+            boolean isWalletExists = this.appInstalled("com.eg.android.AlipayGphone");
+            callbackContext.success(isWalletExists);
             return true;
         }
 
