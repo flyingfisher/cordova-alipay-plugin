@@ -22,7 +22,7 @@ public class AlipayPlugin extends CordovaPlugin {
             boolean isWalletExists = this.appInstalled("com.eg.android.AlipayGphone");
             if(!isWalletExists){
                 callbackContext.error("wallet not found");
-                return;
+                return true;
             }
 
             cordova.getThreadPool().execute(new Runnable() {
