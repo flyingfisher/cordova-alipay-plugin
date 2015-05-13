@@ -6,10 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
 
 import com.alipay.sdk.app.PayTask;
-
-import java.lang.Exception
 
 public class AlipayPlugin extends CordovaPlugin {
 
@@ -18,13 +18,11 @@ public class AlipayPlugin extends CordovaPlugin {
         if (action.equals("pay")) {
             final Activity activity = this.cordova.getActivity();
             final String payStr = args.getString(0);
-            // found alipay wallet package
-            PackageInfo packageInfo;
-            try {
-                packageInfo =cordova.getActivity().getPackageManager().getPackageInfo("com.eg.android.AlipayGphone", 0);
-            } catch (PackageManager.NameNotFoundException e) {
+
+            boolean isWalletExists = this.appInstalled("com.eg.android.AlipayGphone");
+            if(!isWalletExists){
                 callbackContext.error("wallet not found");
-                return true;
+                return;
             }
 
             cordova.getThreadPool().execute(new Runnable() {
@@ -41,5 +39,17 @@ public class AlipayPlugin extends CordovaPlugin {
         return false;
     }
 
-
+    private boolean appInstalled(String uri) {
+        Context ctx = this.cordova.getActivity().getApplicationContext();
+        final PackageManager pm = ctx.getPackageManager();
+        boolean app_installed = false;
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        }
+        catch(PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
+    }
 }
