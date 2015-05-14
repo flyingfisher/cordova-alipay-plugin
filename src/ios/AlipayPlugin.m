@@ -32,7 +32,7 @@
 
     CDVPluginResult* pluginResult = nil;
 
-    NSString* scheme = @"alipay";
+    NSString* scheme = @"alipay://";
 
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:scheme]]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"true"];
