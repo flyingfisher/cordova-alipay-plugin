@@ -17,6 +17,7 @@
     NSString* orderStr = [command.arguments objectAtIndex:0];
     NSString* appScheme = [command.arguments objectAtIndex:1];
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:orderStr];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return;
     if (orderStr != nil) {
         [[AlipaySDK defaultService] payOrder:orderStr fromScheme:appScheme callback:^(NSDictionary *resultDic) {
