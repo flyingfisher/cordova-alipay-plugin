@@ -12,7 +12,7 @@
 @implementation AlipayPlugin
 
 - (void) pay:(CDVInvokedUrlCommand*) command {
-    CDVPluginResult* pluginResult = nil;
+    __block CDVPluginResult* pluginResult = nil;
     
     NSString* orderStr = [command.arguments objectAtIndex:0];
     NSString* appScheme = [command.arguments objectAtIndex:1];
