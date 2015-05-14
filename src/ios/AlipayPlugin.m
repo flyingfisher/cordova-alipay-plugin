@@ -35,10 +35,10 @@
     NSString* scheme = @"alipay";
 
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:scheme]]) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"true"];
     }
     else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(false)];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"false"];
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
